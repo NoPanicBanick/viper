@@ -1,6 +1,6 @@
 locals {
   location            = "westus2"
-  gateway_name = "viper-vpn-gateway"
+  gateway_name        = "viper-vpn-gateway"
   public_ip_name      = "viper-vpn"
   resource_group_name = "viper-vpn-rg"
   subnet_name         = "viper"
@@ -39,9 +39,9 @@ resource "azurerm_virtual_network_gateway" "example" {
   name                = local.gateway_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  type     = "Vpn"
-  vpn_type = "RouteBased"
-  sku           = "VpnGw1"
+  type                = "Vpn"
+  vpn_type            = "RouteBased"
+  sku                 = "VpnGw1"
 
   ip_configuration {
     name                          = "vpn-gateway"
@@ -52,4 +52,5 @@ resource "azurerm_virtual_network_gateway" "example" {
 
   vpn_client_configuration {
     address_space = ["10.1.0.0/28"]
+  }
 }
