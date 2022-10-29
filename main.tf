@@ -4,7 +4,7 @@ locals {
   resource_group_name = "viper-vpn-rg"
   subnet_name         = "viper"
   vnet_name           = "viper-vpn-vnet"
-  
+
 }
 
 resource "azurerm_resource_group" "rg" {
