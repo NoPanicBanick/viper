@@ -23,7 +23,7 @@ resource "azurerm_subnet" "subnet" {
   name                 = local.subnet_name
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = azurerm_virtual_network.vnet.address_space[0]
+  address_prefixes     = ["10.0.1.0/28"]
 }
 
 resource "azurerm_public_ip" "public_ip" {
