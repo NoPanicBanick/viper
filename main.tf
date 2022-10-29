@@ -32,7 +32,7 @@ resource "azurerm_public_ip" "public_ip" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
-  allocation_method = "Static"
+  allocation_method = "Dynamic"
 }
 
 resource "azurerm_virtual_network_gateway" "gateway" {
