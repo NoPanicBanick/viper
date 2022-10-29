@@ -47,7 +47,7 @@ resource "azurerm_virtual_network_gateway" "example" {
     name                          = "vpn-gateway"
     public_ip_address_id          = azurerm_public_ip.public_ip.id
     private_ip_address_allocation = "Dynamic"
-    subnet_id                     = azurerm_subnet.example.id
+    subnet_id                     = azurerm_subnet.subnet.id
   }
 
   vpn_client_configuration {
