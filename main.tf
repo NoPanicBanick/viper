@@ -3,8 +3,8 @@ locals {
   gateway_name        = "viper-vpn-gateway"
   public_ip_name      = "viper-vpn"
   resource_group_name = "viper-vpn-rg"
-  subnet_name         = "viper"
-  vnet_name           = "GatewaySubnet"
+  subnet_name         = "GatewaySubnet"
+  vnet_name           = "viper-vpn-vnet"
 
 }
 
