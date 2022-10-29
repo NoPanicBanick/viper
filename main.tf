@@ -4,7 +4,7 @@ locals {
   public_ip_name      = "viper-vpn"
   resource_group_name = "viper-vpn-rg"
   subnet_name         = "viper"
-  vnet_name           = "viper-vpn-vnet"
+  vnet_name           = "GatewaySubnet"
 
 }
 
@@ -35,7 +35,7 @@ resource "azurerm_public_ip" "public_ip" {
   allocation_method = "Static"
 }
 
-resource "azurerm_virtual_network_gateway" "example" {
+resource "azurerm_virtual_network_gateway" "gateway" {
   name                = local.gateway_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
