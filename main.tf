@@ -1,9 +1,10 @@
 locals {
   location            = "westus2"
+  gateway_name        = "viper-vpn-gateway"
   public_ip_name      = "viper-vpn"
   resource_group_name = "viper-vpn-rg"
   subnet_name         = "viper"
-  vnet_name           = "viper-vpn-vnet"
+  vnet_name           = "GatewaySubnet"
 
 }
 
@@ -32,4 +33,24 @@ resource "azurerm_public_ip" "public_ip" {
   resource_group_name = azurerm_resource_group.rg.name
 
   allocation_method = "Static"
+}
+
+resource "azurerm_virtual_network_gateway" "gateway" {
+  name                = local.gateway_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  type                = "Vpn"
+  vpn_type            = "RouteBased"
+  sku                 = "VpnGw1"
+
+  ip_configuration {
+    name                          = "vpn-gateway"
+    public_ip_address_id          = azurerm_public_ip.public_ip.id
+    private_ip_address_allocation = "Dynamic"
+    subnet_id                     = azurerm_subnet.subnet.id
+  }
+
+  vpn_client_configuration {
+    address_space = ["10.1.0.0/28"]
+  }
 }
