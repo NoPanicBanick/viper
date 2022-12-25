@@ -1,19 +1,32 @@
 locals {
   location                       = "Australia East"
   gateway_name                   = "viper-vpn-gateway"
-  public_ip_name                 = "viper-vpn"
   resource_group_name            = "viper-vm-rg"
   subnet_name                    = "vm1"
   vnet_name                      = "viper-vnet"
   virtual_machine_name           = "viper-vm"
   virtual_network_interface_name = "viper-vnet-nic"
   virtual_network_name           = "viper-vm"
+
+  public_ip_name   = "viper-vm-publicip"
 }
 
+#### Data Sources ####
 data "azurerm_resource_group" "rg" {
   name = local.resource_group_name
 }
 
+data "azurerm_managed_disk" "disk" {
+  name                = "viper-os-disk"
+  resource_group_name = data.azurerm_resource_group.rg.name
+}
+
+data "azurerm_public_ip" "ip" {
+  name = local.public_ip_name
+  resource_group_name = local.resource_group_name
+}
+
+#### Resources ####
 resource "azurerm_virtual_network" "network" {
   name                = local.virtual_network_name
   address_space       = ["10.0.0.0/28"]
@@ -38,13 +51,8 @@ resource "azurerm_network_interface" "example" {
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
 
-    public_ip_address_id = azurerm_public_ip.ip.id
+    public_ip_address_id = data.azurerm_public_ip.ip.id
   }
-}
-
-data "azurerm_managed_disk" "disk" {
-  name                = "viper-os-disk"
-  resource_group_name = data.azurerm_resource_group.rg.name
 }
 
 resource "azurerm_virtual_machine" "main" {
@@ -90,33 +98,4 @@ resource "azurerm_virtual_machine" "main" {
     os_type         = "Windows"
     managed_disk_id = data.azurerm_managed_disk.disk.id
   }
-}
-
-resource "azurerm_public_ip" "ip" {
-  name                = "vipervmip"
-  resource_group_name = data.azurerm_resource_group.rg.name
-  location            = data.azurerm_resource_group.rg.location
-  allocation_method   = "Static"
-}
-
-
-data "azurerm_dns_zone" "dnszone" {
-  name                = "imnotaddicted.com"
-  resource_group_name = "banick-dns-rg"
-}
-
-resource "azurerm_dns_a_record" "base_address_a_record" {
-  name                = "@"
-  zone_name           = data.azurerm_dns_zone.dnszone.name
-  resource_group_name = data.azurerm_dns_zone.dnszone.resource_group_name
-  ttl                 = 60
-  records             = ["${azurerm_public_ip.ip.ip_address}"]
-}
-
-resource "azurerm_dns_cname_record" "example" {
-  name                = "www"
-  zone_name           = data.azurerm_dns_zone.dnszone.name
-  resource_group_name = data.azurerm_dns_zone.dnszone.resource_group_name
-  ttl                 = 60
-  record              = azurerm_public_ip.ip.ip_address
 }
