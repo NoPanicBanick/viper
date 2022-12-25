@@ -1,4 +1,4 @@
-name: 'Deploy_Static_Resources'
+name: 'deploy_static_resources'
 
 on:
   push:
@@ -11,8 +11,8 @@ permissions:
   contents: read
 
 jobs:
-  terraform:
-    name: 'Deploy_Static_Resources'
+  deploy_static_resources:
+    name: 'deploy_static_resources'
     runs-on: ubuntu-latest
     environment: production
     env:
