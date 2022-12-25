@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - static_resources/**
-      - .github/workflows/**
+      - .github/workflows/static_resources.yml
 
 permissions:
   contents: read

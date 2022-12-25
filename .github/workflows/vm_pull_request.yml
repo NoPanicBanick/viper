@@ -4,7 +4,7 @@ on:
   pull_request:
     paths:
       - virtual_machine/**
-      - .github/workflows/**
+      - .github/workflows/vm_pull_request.yml
 
 permissions:
   contents: read
