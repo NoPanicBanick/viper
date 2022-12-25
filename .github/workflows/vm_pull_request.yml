@@ -2,8 +2,8 @@ name: 'vm_pull_request'
 
 on:
   pull_request:
-  paths:
-      - virtual_machine/**
+    paths:
+        - virtual_machine/**
 
 permissions:
   contents: read
