@@ -25,7 +25,6 @@ jobs:
 
     steps:
     - name: Checkout
-      working-directory: static_resources
       uses: actions/checkout@v3
 
     - name: Terraform Init
