@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: 'vm_pull_request'
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'vm_pull_request'
     runs-on: ubuntu-latest
     environment: production
     env:
