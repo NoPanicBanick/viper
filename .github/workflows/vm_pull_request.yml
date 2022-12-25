@@ -3,7 +3,8 @@ name: 'vm_pull_request'
 on:
   pull_request:
     paths:
-        - virtual_machine/**
+      - virtual_machine/**
+      - .github/workflows/**
 
 permissions:
   contents: read
