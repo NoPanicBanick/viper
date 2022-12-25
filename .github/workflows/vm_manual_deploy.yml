@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: 'vm_deploy_8core'
 
 on:
   workflow_dispatch:
@@ -7,8 +7,8 @@ permissions:
   contents: read
 
 jobs:
-  terraform:
-    name: 'Terraform'
+  vm_deploy_8core:
+    name: 'vm_deploy_8core'
     runs-on: ubuntu-latest
     environment: production
     env:
