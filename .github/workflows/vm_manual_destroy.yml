@@ -1,4 +1,4 @@
-name: 'vm_apply_8core'
+name: 'vm_destroy_8core'
 
 on:
   workflow_dispatch:
@@ -7,8 +7,8 @@ permissions:
   contents: read
 
 jobs:
-  vm_apply_8core:
-    name: 'vm_apply_8core'
+  vm_destroy_8core:
+    name: 'vm_destroy_8core'
     runs-on: ubuntu-latest
     environment: production
     env:
@@ -29,6 +29,6 @@ jobs:
       working-directory: virtual_machine
       run: terraform init
 
-    - name: Terraform Apply
+    - name: Terraform Destroy
       working-directory: virtual_machine
-      run: terraform apply -auto-approve -input=false
+      run: terraform destroy -auto-approve -input=false
