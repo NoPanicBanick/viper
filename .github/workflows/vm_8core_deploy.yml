@@ -1,17 +1,17 @@
-name: 'vm_destroy'
+name: 'vm_apply_8core'
 
 on:
   workflow_dispatch:
   repository_dispatch:
     types:
-      - webhook
+      - vm_8core_deploy
 
 permissions:
   contents: read
 
 jobs:
-  vm_destroy:
-    name: 'vm_destroy'
+  vm_apply_8core:
+    name: 'vm_apply_8core'
     runs-on: ubuntu-latest
     environment: production
     env:
@@ -32,6 +32,6 @@ jobs:
       working-directory: virtual_machine
       run: terraform init
 
-    - name: Terraform Destroy
+    - name: Terraform Apply
       working-directory: virtual_machine
-      run: terraform destroy -auto-approve -input=false
+      run: terraform apply -auto-approve -input=false
