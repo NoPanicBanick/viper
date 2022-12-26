@@ -1,10 +1,10 @@
 locals {
-  location            = "Australia Central"
-  static_rg_name      = "viper-vm-static-rg"
+  location       = "Australia Central"
+  static_rg_name = "viper-vm-static-rg"
 
-  disk_name        = "viper-os-disk"
-  dns_zone_name    = "imnotaddicted.com"
-  public_ip_name   = "viper-vm-publicip"
+  disk_name      = "viper-os-disk"
+  dns_zone_name  = "imnotaddicted.com"
+  public_ip_name = "viper-vm-publicip"
 }
 
 #### Resources ####
