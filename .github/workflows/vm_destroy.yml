@@ -5,6 +5,8 @@ on:
   repository_dispatch:
     types:
       - vm_destroy
+  schedule:
+    - cron: '0 10 * * *'
 
 permissions:
   contents: read
