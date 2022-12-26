@@ -1,17 +1,17 @@
-name: 'vm_destroy'
+name: 'vm_4core_deploy'
 
 on:
   workflow_dispatch:
   repository_dispatch:
     types:
-      - vm_destroy
+      - vm_4core_deploy
 
 permissions:
   contents: read
 
 jobs:
-  vm_destroy:
-    name: 'vm_destroy'
+  vm_4core_deploy:
+    name: 'vm_4core_deploy'
     runs-on: ubuntu-latest
     environment: production
     env:
@@ -21,7 +21,7 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
       TF_VAR_vm_username: ${{ secrets.VM_USERNAME }}
       TF_VAR_vm_password: ${{ secrets.VM_PASSWORD }}
-      TF_VAR_vm_size: 'Standard_D8s_v3'
+      TF_VAR_vm_size: 'Standard_D4s_v3'
 
     defaults:
       run:
@@ -35,6 +35,6 @@ jobs:
       working-directory: virtual_machine
       run: terraform init
 
-    - name: Terraform Destroy
+    - name: Terraform Apply
       working-directory: virtual_machine
-      run: terraform destroy -auto-approve -input=false
+      run: terraform apply -auto-approve -input=false
