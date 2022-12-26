@@ -1,17 +1,17 @@
-name: 'vm_4core_deploy'
+name: 'vm_apply_4core'
 
 on:
   workflow_dispatch:
   repository_dispatch:
     types:
-      - vm_4core_deploy
+      - vm_apply_4core
 
 permissions:
   contents: read
 
 jobs:
-  vm_4core_deploy:
-    name: 'vm_4core_deploy'
+  vm_apply_4core:
+    name: 'vm_apply_4core'
     runs-on: ubuntu-latest
     environment: production
     env:
