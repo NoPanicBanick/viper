@@ -45,10 +45,10 @@ data "azurerm_public_ip" "ip" {
   resource_group_name = data.azurerm_resource_group.static_rg.name
 }
 
-# data "azurerm_managed_disk" "os_disk" {
-#   name = local.vm_os_drive_name
-#   resource_group_name = data.azurerm_resource_group.static_rg.name
-# }
+data "azurerm_managed_disk" "os_disk" {
+  name = local.vm_os_drive_name
+  resource_group_name = data.azurerm_resource_group.static_rg.name
+}
 
 #### Resources ####
 resource "azurerm_resource_group" "rg" {
@@ -99,33 +99,33 @@ resource "azurerm_virtual_machine" "main" {
     provision_vm_agent        = false
   }
 
-#   storage_os_disk {
-#     name            = local.vm_os_drive_name
-#     caching         = "ReadWrite"
-#     create_option   = "Attach"
-#     os_type         = "Windows"
-#     managed_disk_id = data.azurerm_managed_disk.os_disk.id
-#   }
+  storage_os_disk {
+    name            = local.vm_os_drive_name
+    caching         = "ReadWrite"
+    create_option   = "Attach"
+    os_type         = "Windows"
+    managed_disk_id = data.azurerm_managed_disk.os_disk.id
+  }
 
   # You can apply this the first time to setup an os disk.  Then comment out
-  os_profile {
-    computer_name  = local.vm_name
-    admin_username = var.vm_username
-    admin_password = var.vm_password
-  }
+#   os_profile {
+#     computer_name  = local.vm_name
+#     admin_username = var.vm_username
+#     admin_password = var.vm_password
+#   }
 
-  storage_image_reference {
-    publisher = "MicrosoftWindowsDesktop" # setup windows 10 base
-    offer     = "Windows-10"              # setup windows 10 base
-    sku       = "20h1-pro"                # setup windows 10 base
-    version   = "latest"                  # setup windows 10 base
-  }
+#   storage_image_reference {
+#     publisher = "MicrosoftWindowsDesktop" # setup windows 10 base
+#     offer     = "Windows-10"              # setup windows 10 base
+#     sku       = "20h1-pro"                # setup windows 10 base
+#     version   = "latest"                  # setup windows 10 base
+#   }
 
-  storage_os_disk {
-    name              = local.vm_os_drive_name
-    caching           = "ReadWrite"
-    create_option     = "FromImage"
-    managed_disk_type = "StandardSSD_LRS"
-    disk_size_gb      = 128
-  }
+#   storage_os_disk {
+#     name              = local.vm_os_drive_name
+#     caching           = "ReadWrite"
+#     create_option     = "FromImage"
+#     managed_disk_type = "StandardSSD_LRS"
+#     disk_size_gb      = 128
+#   }
 }
