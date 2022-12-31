@@ -45,10 +45,10 @@ data "azurerm_public_ip" "ip" {
   resource_group_name = data.azurerm_resource_group.static_rg.name
 }
 
-data "azurerm_managed_disk" "os_disk" {
-  name = local.vm_os_drive_name
-  resource_group_name = data.azurerm_resource_group.static_rg.name
-}
+# data "azurerm_managed_disk" "os_disk" {
+#   name = local.vm_os_drive_name
+#   resource_group_name = data.azurerm_resource_group.static_rg.name
+# }
 
 #### Resources ####
 resource "azurerm_resource_group" "rg" {
