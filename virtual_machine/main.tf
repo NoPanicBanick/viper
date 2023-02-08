@@ -107,6 +107,14 @@ resource "azurerm_virtual_machine" "main" {
     managed_disk_id = data.azurerm_managed_disk.os_disk.id
   }
 
+resource "azurerm_virtual_machine_extension" "nvidia" {
+  name                 = "NvidiaGpuDriverWindows"
+  virtual_machine_id   = azurerm_virtual_machine.main.id
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "Microsoft.HpcCompute.NvidiaGpuDriverWindows"
+  type_handler_version = "1.*"
+}
+  
   # You can apply this the first time to setup an os disk.  Then comment out
 #   os_profile {
 #     computer_name  = local.vm_name
