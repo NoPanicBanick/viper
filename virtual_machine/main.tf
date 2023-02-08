@@ -106,6 +106,7 @@ resource "azurerm_virtual_machine" "main" {
     os_type         = "Windows"
     managed_disk_id = data.azurerm_managed_disk.os_disk.id
   }
+}
 
 resource "azurerm_virtual_machine_extension" "nvidia" {
   name                 = "NvidiaGpuDriverWindows"
