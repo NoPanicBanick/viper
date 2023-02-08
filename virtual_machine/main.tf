@@ -137,4 +137,3 @@ resource "azurerm_virtual_machine_extension" "nvidia" {
 #     managed_disk_type = "StandardSSD_LRS"
 #     disk_size_gb      = 128
 #   }
-}
