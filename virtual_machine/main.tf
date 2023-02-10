@@ -108,13 +108,13 @@ resource "azurerm_virtual_machine" "main" {
   }
 }
 
-resource "azurerm_virtual_machine_extension" "nvidia" {
-  name                 = "NvidiaGpuDriverWindows"
-  virtual_machine_id   = azurerm_virtual_machine.main.id
-  publisher            = "Microsoft.Azure.Extensions"
-  type                 = "Microsoft.HpcCompute.NvidiaGpuDriverWindows"
-  type_handler_version = "1.*"
-}
+# resource "azurerm_virtual_machine_extension" "nvidia" {
+#   name                 = "NvidiaGpuDriverWindows"
+#   virtual_machine_id   = azurerm_virtual_machine.main.id
+#   publisher            = "Microsoft.Azure.Extensions"
+#   type                 = "Microsoft.HpcCompute.NvidiaGpuDriverWindows"
+#   type_handler_version = "1.*"
+# }
   
   # You can apply this the first time to setup an os disk.  Then comment out
 #   os_profile {
